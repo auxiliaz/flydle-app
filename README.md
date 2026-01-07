@@ -1,105 +1,99 @@
-# Flydle App
+# Flydle App – Aplikasi Mobile Autentikasi
 
-Flydle App is a mobile application built with **Flutter** that focuses on implementing **authentication and user profile management using Supabase**.  
-This project was developed to explore backend integration for login, registration, and profile handling.
-
----
-
-## Overview
-
-The main goal of this project is to implement a complete authentication flow using **Supabase** as the backend service.  
-Users can register, log in, view their profile, update profile data, and log out of the application.
-
-The home page displays dummy content to represent the main app interface after successful authentication.
-
----
+Flydle App adalah aplikasi mobile yang dibangun menggunakan **Flutter** dengan fokus pada implementasi **autentikasi dan manajemen profil pengguna** menggunakan **Supabase** sebagai backend service. Proyek ini bertujuan untuk mempelajari integrasi backend pada aplikasi mobile, khususnya untuk proses login, registrasi, dan pengelolaan profil pengguna.
 
 ## Tech Stack
 
-- Flutter
-- Dart
-- Supabase (Authentication & Database)
-- Navigator (Flutter navigation)
-- setState (state management)
+- Framework: Flutter
+- Bahasa: Dart
+- Backend as a Service: Supabase
+- Navigation: Navigator
+- State Management: setState
 
----
+## Menjalankan proyek
 
-## Implemented Features
+Pastikan **Flutter SDK** sudah terpasang dan terkonfigurasi dengan benar.
 
-### Authentication
-- User registration using:
-  - Name
-  - Email
-  - Password
-- User login using:
-  - Email
-  - Password
-- Authentication handled entirely by Supabase
+1. **Clone repository**
+```bash
+git clone https://github.com/auxiliaz/flydle-app.git
+cd flydle-app 
+```
+2. **Install dependencies**
+```bash
+flutter pub get
+```
+3. **Konfigurasi Supabase**
+   - Buat project di Supabase
+   - Masukkan `SUPABASE_URL` dan `SUPABASE_ANON_KEY` ke dalam konfigurasi aplikasi (misalnya di file constant / env)
+4. **Jalankan aplikasi**
+```bash
+flutter run 
+```
 
----
+## Fitur utama
 
-### Home Page
-- Displays user name fetched from Supabase
-- Shows dummy data for UI representation
-- Accessible only after successful login
+- Registrasi pengguna menggunakan email dan password.
+- Login pengguna dengan autentikasi Supabase.
+- Halaman utama (Home) setelah login.
+- Halaman profil pengguna.
+- Update data profil (nama dan password).
+- Logout dan penghapusan session.
+- Navigasi antar halaman menggunakan Navigator.
 
----
+## Alur kerja aplikasi
 
-### Profile Page
-- Displays user profile data
-- User can:
-  - Update name
-  - Update password
-- Profile data is synced with Supabase
+1. **Autentikasi Pengguna**
+   - Pengguna dapat melakukan registrasi dengan nama, email, dan password.
+   - Proses autentikasi sepenuhnya ditangani oleh Supabase Auth.
+   - Setelah login berhasil, session pengguna disimpan oleh Supabase.
 
----
+2. **Home Page**
+   - Pengguna diarahkan ke halaman Home setelah autentikasi berhasil.
+   - Nama pengguna ditampilkan berdasarkan data yang diambil dari Supabase.
+   - Konten pada halaman ini masih berupa dummy data sebagai representasi UI aplikasi utama.
 
-### Logout
-- User can log out from the application
-- Session is cleared
-- User is redirected back to the login page
+3. **Profile Page**
+   - Pengguna dapat melihat data profil yang tersimpan di Supabase.
+   - Pengguna dapat memperbarui:
+     1. Nama
+     2. Password
+   - Perubahan data langsung disinkronkan ke database Supabase.
 
----
+4. **Navigasi**
+   - Navigasi antar halaman (Login, Home, Profile) menggunakan Navigator Flutter.
+   - Akses ke halaman Home dan Profile dibatasi hanya untuk pengguna yang sudah login.
 
-## Application Flow
+5. **Logout**
+   - Pengguna dapat melakukan logout dari aplikasi.
+   - Session Supabase dihapus.
+   - Pengguna diarahkan kembali ke halaman login.
 
-1. User opens the application
-2. User logs in or registers
-3. After successful authentication:
-   - User is redirected to the Home Page
-   - User name is displayed
-4. User can navigate to the Profile Page
-5. User updates profile information if needed
-6. User logs out and returns to the Login Page
+## Manajemen Data
 
----
+- Autentikasi pengguna dikelola menggunakan Supabase Authentication.
+- Data profil pengguna disimpan dan diambil dari Supabase Database.
+- Tidak menggunakan state management tambahan (mengandalkan `setState`).
 
-## Data Management
+## Struktur penting
 
-- User authentication is handled by Supabase Auth
-- User profile data is stored and retrieved from Supabase database
-- Home page content uses dummy data for display purposes
+- `lib/main.dart` – Entry point aplikasi.
+- `lib/pages/` – Halaman utama (Login, Home, Profile).
+- `lib/services/` – Integrasi Supabase (auth dan database).
+- `lib/models/` – Model data pengguna.
+- `lib/widgets/` – Komponen UI reusable.
 
----
+## Keterbatasan Aplikasi
 
-## Limitations
+- Konten Home Page masih berupa data statis (dummy).
+- Belum terdapat fitur bisnis lanjutan.
+- Fokus aplikasi masih terbatas pada autentikasi dan profil pengguna.
 
-- Home page content is static (dummy data)
-- No complex business logic implemented yet
-- Focus is limited to authentication and profile features
+## Tujuan Proyek
 
----
+Proyek ini dibuat untuk:
 
-## Purpose
-
-This project was created to:
-- Learn and implement Supabase authentication
-- Practice backend integration in Flutter
-- Build a clean authentication flow with profile management
-- Serve as a technical task / learning project
-
----
-
-## License
-
-This project is intended for educational and evaluation purposes.
+1. Mempelajari integrasi Supabase pada aplikasi Flutter.
+2. Memahami alur autentikasi dan manajemen session.
+3. Melatih penggunaan backend service pada aplikasi mobile.
+4. Menjadi proyek pembelajaran / evaluasi teknis.
